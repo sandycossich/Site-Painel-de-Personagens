@@ -1,0 +1,468 @@
+:root {
+  --fundo-1: #1a1033;
+  --fundo-2: #0d0820;
+  --painel: #241848;
+  --campo: #130c2b;
+  --borda: #3d2d73;
+  --texto: #f0e9ff;
+  --suave: #cbb8ff;
+  --dourado: #ffd86b;
+  --laranja: #ff9f43;
+  --verde: #4cd964;
+  --azul: #4da6ff;
+  --vermelho: #ff5252;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  line-height: 1.5;
+  background: linear-gradient(160deg, var(--fundo-1), var(--fundo-2));
+  background-attachment: fixed;
+  color: var(--texto);
+  min-height: 100vh;
+  padding: 36px 16px 60px;
+}
+
+/* TÍTULOS */
+h1 {
+  text-align: center;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  margin-bottom: 28px;
+  color: var(--dourado);
+  text-shadow: 0 2px 8px rgba(255, 216, 107, 0.3);
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin: 36px 0 16px;
+  color: var(--dourado);
+  text-shadow: 0 2px 8px rgba(255, 216, 107, 0.3);
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--dourado), var(--laranja));
+}
+
+.oculto {
+  display: none;
+}
+
+/* PAINÉIS */
+.container {
+  max-width: 520px;
+  margin: 0 auto 24px;
+  background: var(--painel);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid var(--borda);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+label {
+  display: block;
+  margin: 14px 0 6px;
+  font-weight: 600;
+  color: var(--suave);
+}
+
+.container > label:first-child {
+  margin-top: 0;
+}
+
+/* CAMPOS */
+#nome,
+#classe,
+#poder,
+#idade,
+#foto,
+#selectDado,
+#inputQtd,
+#inputMod,
+#motivoAvaliacao {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--borda);
+  border-radius: 8px;
+  background: var(--campo);
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#motivoAvaliacao {
+  resize: vertical;
+  min-height: 90px;
+}
+
+::placeholder {
+  color: #7a6aa8;
+}
+
+#foto {
+  padding: 8px;
+  color: var(--suave);
+}
+
+#foto::file-selector-button {
+  margin-right: 12px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: var(--borda);
+  color: var(--texto);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#nome:focus,
+#classe:focus,
+#poder:focus,
+#idade:focus,
+#foto:focus,
+#selectDado:focus,
+#inputQtd:focus,
+#inputMod:focus,
+#motivoAvaliacao:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(255, 216, 107, 0.2);
+}
+
+/* BOTÕES PRINCIPAIS */
+#btnAdicionar,
+#btnAvaliar,
+#btnRolar {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+#btnAdicionar,
+#btnAvaliar {
+  background: linear-gradient(135deg, var(--dourado), var(--laranja));
+  color: #2a1a00;
+}
+
+#btnRolar {
+  background: linear-gradient(135deg, #8cc8ff, var(--azul));
+  color: #07203a;
+}
+
+#btnAdicionar:hover,
+#btnAvaliar:hover,
+#btnRolar:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+#btnAdicionar:active,
+#btnAvaliar:active,
+#btnRolar:active {
+  transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--dourado);
+  outline-offset: 2px;
+}
+
+/* MENSAGEM DE FEEDBACK */
+#mensagem {
+  max-width: 520px;
+  margin: 0 auto 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+#mensagem:empty,
+#resultadoDado:empty {
+  display: none;
+}
+
+#mensagem.erro,
+#mensagem.sucesso,
+#resultadoDado.erro,
+#resultadoDado.sucesso {
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+#mensagem.erro,
+#resultadoDado.erro {
+  background: rgba(255, 82, 82, 0.15);
+  border: 1px solid var(--vermelho);
+  color: #ff8a8a;
+}
+
+#mensagem.sucesso,
+#resultadoDado.sucesso {
+  background: rgba(76, 217, 100, 0.15);
+  border: 1px solid var(--verde);
+  color: #7dffa0;
+}
+
+/* RESULTADO DO DADO */
+#resultadoDado {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* AVALIAÇÃO DO SITE */
+#notaEstrelas {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.estrela {
+  border: none;
+  background: transparent;
+  color: #6a58a8;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s, color 0.15s;
+}
+
+.estrela:hover {
+  transform: scale(1.15);
+  color: var(--dourado);
+}
+
+.estrela.ativa {
+  color: var(--dourado);
+}
+
+/* ALERTA DE ESTRELAS */
+#alertaEstrelas {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 24px;
+  padding: 20px 46px 20px 20px;
+  background: linear-gradient(145deg, #3a2a10, var(--painel));
+  border: 2px solid var(--dourado);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 216, 107, 0.3);
+  animation: surgir 0.3s ease-out;
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#estrelas {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dourado);
+  margin-bottom: 8px;
+}
+
+#motivoEstrelas {
+  color: var(--texto);
+}
+
+#btnFecharAlerta {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: var(--dourado);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* LISTA DE PERSONAGENS */
+#lista {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* CARD: avatar à esquerda, dados à direita */
+.card {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  column-gap: 16px;
+  align-content: start;
+  background: var(--painel);
+  border-radius: 12px;
+  padding: 18px;
+  border-left: 6px solid #888;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+}
+
+.card > * {
+  grid-column: 2;
+}
+
+.avatar {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--borda);
+  background: var(--campo);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: var(--suave);
+  margin-bottom: 12px;
+}
+
+/* RESULTADO DO D20 DENTRO DO CARD */
+.card .rolagem {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--campo);
+  border: 1px solid var(--borda);
+  color: var(--dourado);
+  font-weight: 600;
+}
+
+/* NÍVEIS DE PODER */
+.card.iniciante {
+  border-left-color: var(--verde);
+}
+
+.card.iniciante h3 {
+  color: #7dffa0;
+}
+
+.card.iniciante .avatar {
+  border-color: var(--verde);
+}
+
+.card.veterano {
+  border-left-color: var(--azul);
+}
+
+.card.veterano h3 {
+  color: #8cc8ff;
+}
+
+.card.veterano .avatar {
+  border-color: var(--azul);
+}
+
+.card.lendario {
+  border-left-color: var(--dourado);
+  background: linear-gradient(145deg, #3a2a10, var(--painel));
+  box-shadow: 0 0 18px rgba(255, 216, 107, 0.35);
+}
+
+.card.lendario h3 {
+  color: var(--dourado);
+}
+
+.card.lendario .avatar {
+  border-color: var(--dourado);
+}
+
+/* BOTÕES DO CARD */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.card .btnD20 {
+  background: var(--azul);
+  color: #07203a;
+}
+
+.card .btnD20:hover {
+  background: #2f8de6;
+}
+
+.card .btnRemover {
+  background: var(--vermelho);
+  color: #fff;
+}
+
+.card .btnRemover:hover {
+  background: #d93636;
+}
+
+/* CELULAR */
+@media (max-width: 400px) {
+  .container {
+    padding: 18px;
+  }
+
+  #lista {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    grid-template-columns: 68px 1fr;
+    column-gap: 12px;
+  }
+
+  .avatar {
+    width: 68px;
+    height: 68px;
+  }
+}

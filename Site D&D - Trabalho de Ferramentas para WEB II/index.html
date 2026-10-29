@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criador de Personagens</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <h1>Criador de Personagens</h1>
+
+  <div class="container">
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" placeholder="Nome do personagem">
+
+    <label for="classe">Classe</label>
+    <select id="classe">
+      <option value="">Escolha a classe</option>
+      <option value="Guerreiro">Guerreiro</option>
+      <option value="Guerreira">Guerreira</option>
+      <option value="Mago">Mago</option>
+      <option value="Maga">Maga</option>
+      <option value="Arqueiro">Arqueiro</option>
+      <option value="Arqueira">Arqueira</option>
+      <option value="Ladino">Ladino</option>
+      <option value="Ladina">Ladina</option>
+      <option value="Paladino">Paladino</option>
+      <option value="Paladina">Paladina</option>
+      <option value="Clérigo">Clérigo</option>
+      <option value="Clériga">Clériga</option>
+      <option value="Bárbaro">Bárbaro</option>
+      <option value="Bárbara">Bárbara</option>
+      <option value="Bardo">Bardo</option>
+      <option value="Barda">Barda</option>
+      <option value="Necromante">Necromante Homem</option>
+      <option value="Necromante 2">Necromante Mulher</option>
+      <option value="Princesa">Princesa</option>
+      <option value="Príncipe">Príncipe</option>
+    </select>
+
+    <label for="poder">Nível de poder (1 a 100)</label>
+    <input type="number" id="poder" min="1" max="100" placeholder="Ex: 75">
+
+    <label for="idade">Idade (opcional)</label>
+    <input type="number" id="idade" min="1" max="999" placeholder="Ex: 28">
+
+    <label for="foto">Foto de perfil (opcional)</label>
+    <input type="file" id="foto" accept="image/*">
+
+    <button id="btnAdicionar">Adicionar personagem</button>
+  </div>
+
+  <p id="mensagem"></p>
+
+  <h2>Rolagem de dados</h2>
+  <div class="container">
+    <label for="selectDado">Dado</label>
+    <select id="selectDado">
+      <option value="4">d4</option>
+      <option value="6">d6</option>
+      <option value="8">d8</option>
+      <option value="10">d10</option>
+      <option value="12">d12</option>
+      <option value="20" selected>d20</option>
+      <option value="100">d100</option>
+    </select>
+
+    <label for="inputQtd">Quantidade de dados (1 a 10)</label>
+    <input type="number" id="inputQtd" min="1" max="10" value="1">
+
+    <label for="inputMod">Modificador (opcional)</label>
+    <input type="number" id="inputMod" placeholder="Ex: 3 ou -2">
+
+    <button id="btnRolar">Rolar dados</button>
+
+    <p id="resultadoDado"></p>
+  </div>
+
+  <h2>Avalie o site</h2>
+  <div class="container">
+    <label>Sua nota</label>
+    <div id="notaEstrelas"></div>
+
+    <label for="motivoAvaliacao">Por que essa nota?</label>
+    <textarea id="motivoAvaliacao" rows="3" placeholder="Conte o que você achou do site"></textarea>
+
+    <button id="btnAvaliar">Enviar avaliação</button>
+  </div>
+
+ 
+  <div id="alertaEstrelas" class="oculto">
+    <button id="btnFecharAlerta">×</button>
+    <p id="estrelas"></p>
+    <p id="motivoEstrelas"></p>
+  </div>
+
+  <h2>Seus personagens</h2>
+  <div id="lista"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
